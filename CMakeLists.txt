@@ -11,5 +11,6 @@ elseif ()
 endif ()
 
 add_subdirectory(Builder)
+add_subdirectory(Command)
 add_subdirectory(Interpreter)
 add_subdirectory(ChainOfResponsibility)
