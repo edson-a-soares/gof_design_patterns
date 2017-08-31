@@ -26,3 +26,8 @@ target_include_directories(${MODULE_NAME} PUBLIC ${PROJECT_INCLUDE_DIR})
 
 add_executable(VisitorPattern ${PROJECT_SOURCE_DIR}/main.cpp)
 target_link_libraries(VisitorPattern ${MODULE_NAME})
+
+# handling module tests
+if (ENABLE_TESTS)
+    add_subdirectory(test)
+endif ()
