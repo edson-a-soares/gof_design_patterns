@@ -4,7 +4,6 @@
 #include "Visitor/CommissionEmployee.h"
 #include "Visitor/AmountHoursAndPayReport.h"
 
-using GoF::Visitor::IEmployee;
 using GoF::Visitor::HourlyEmployee;
 using GoF::Visitor::IEmployeeVisitor;
 using GoF::Visitor::SalariedEmployee;
@@ -31,27 +30,27 @@ protected:
 
 TEST_F(AmountHoursAndPayReportTestCase, HourlyEmployee) {
 
-    auto * employee = new HourlyEmployee("", "", 16.75, 40);
+    auto employee = HourlyEmployee("", "", 16.75, 40);
 
-    employee->accept(report);
-    ASSERT_EQ(1600, employee->getEarnings());
+    employee.accept(report);
+    ASSERT_EQ(1600, employee.getEarnings());
 
 }
 
 TEST_F(AmountHoursAndPayReportTestCase, SalariedEmployee) {
 
-    auto * employee = new SalariedEmployee("", "", 800);
+    auto employee = SalariedEmployee("", "", 800);
 
-    employee->accept(report);
-    ASSERT_EQ(800, employee->getEarnings());
+    employee.accept(report);
+    ASSERT_EQ(800, employee.getEarnings());
 
 }
 
 TEST_F(AmountHoursAndPayReportTestCase, CommissionEmployee) {
 
-    auto * employee = new CommissionEmployee("", "", 10000, .06 );
+    auto employee = CommissionEmployee("", "", 10000, .06 );
 
-    employee->accept(report);
-    ASSERT_EQ(600, employee->getEarnings());
+    employee.accept(report);
+    ASSERT_EQ(600, employee.getEarnings());
 
 }
