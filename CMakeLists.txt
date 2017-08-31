@@ -10,6 +10,7 @@ elseif ()
     message(STATUS "Building project without tests")
 endif ()
 
+add_subdirectory(State)
 add_subdirectory(Builder)
 add_subdirectory(Command)
 add_subdirectory(Visitor)
