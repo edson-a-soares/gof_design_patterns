@@ -12,3 +12,4 @@ endif ()
 
 add_subdirectory(Builder)
 add_subdirectory(Interpreter)
+add_subdirectory(ChainOfResponsibility)
