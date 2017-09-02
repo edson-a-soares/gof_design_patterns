@@ -11,6 +11,7 @@ elseif ()
 endif ()
 
 add_subdirectory(State)
+add_subdirectory(Memento)
 add_subdirectory(Builder)
 add_subdirectory(Command)
 add_subdirectory(Visitor)
