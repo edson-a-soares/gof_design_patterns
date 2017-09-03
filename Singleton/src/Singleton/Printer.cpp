@@ -6,6 +6,9 @@ namespace GoF {
 
     namespace Singleton {
 
+        Printer::Printer()
+        { }
+
         void Printer::print(const std::string & content)
         {
             Authorization authorization;

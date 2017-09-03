@@ -6,6 +6,9 @@ namespace GoF {
 
     namespace Singleton {
 
+        Authentication::Authentication()
+        { }
+
         void Authentication::signIn(const std::string & username, const std::string & password)
         {
             if ( username != "michael" || password != "abc123" ) {

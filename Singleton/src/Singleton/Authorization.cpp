@@ -6,6 +6,9 @@ namespace GoF {
 
     namespace Singleton {
 
+        Authorization::Authorization()
+        { }
+
         void Authorization::signOut()
         {
             authorize();

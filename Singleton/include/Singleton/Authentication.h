@@ -29,8 +29,7 @@ namespace GoF {
         class Authentication
         {
         public:
-            Authentication()
-            { }
+            Authentication();
 
             void signIn(const std::string &, const std::string &);
 

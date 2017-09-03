@@ -27,8 +27,7 @@ namespace GoF {
         class Authorization
         {
         public:
-            Authorization()
-            { }
+            Authorization();
 
             void signOut();
             void authorize();

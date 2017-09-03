@@ -29,8 +29,7 @@ namespace GoF {
         class Printer
         {
         public:
-            Printer()
-            { }
+            Printer();
 
             void print(const std::string &);
 
