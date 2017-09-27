@@ -10,6 +10,7 @@ elseif ()
     message(STATUS "Building project without tests")
 endif ()
 
+add_subdirectory(Proxy)
 add_subdirectory(State)
 add_subdirectory(Bridge)
 add_subdirectory(Memento)
