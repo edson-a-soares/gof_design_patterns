@@ -21,26 +21,31 @@
 #define GOF_STATE_STATE_OPERAND_RIGHT_STATE_H
 
 #include <iostream>
-#include "State/IState.h"
-#include "State/StateMachine.h"
+#include "State/StateContext.h"
+#include "State/AbstractState.h"
 
 namespace GoF {
 
     namespace State {
 
-        class OperandRightState : public IState
+        class OperandRightState : public AbstractState
         {
         public:
-            OperandRightState(StateMachine &);
+            static IState & getInstance();
 
             double getResult();
-            void setOperandLeft(double);
-            void setOperandRight(double);
             void setOperation(Operation);
 
         private:
-            double operandValue;
-            StateMachine & stateMachine;
+            Operation nextOperation;
+
+            OperandRightState();
+
+            OperandRightState(OperandRightState const &)
+            { }
+
+            OperandRightState & operator=(OperandRightState const &)
+            { }
 
         };
 

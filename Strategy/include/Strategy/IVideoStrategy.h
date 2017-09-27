@@ -17,20 +17,20 @@
  *     Edson Araújo Soares
  */
 
-#ifndef GOF_STATE_STATE_H
-#define GOF_STATE_STATE_H
+#ifndef GOF_STRATEGY_IVIDEO_STRATEGY_H
+#define GOF_STRATEGY_IVIDEO_STRATEGY_H
 
 namespace GoF {
 
-    namespace State {
+    namespace Strategy {
 
-        enum State
+        class IVideoStrategy
         {
-            EMPTY
-            , RESULT
-            , OPERATION
-            , OPERAND_LEFT
-            , OPERAND_RIGHT
+        public:
+            virtual ~IVideoStrategy()
+            { }
+
+            virtual void execute() = 0;
 
         };
 

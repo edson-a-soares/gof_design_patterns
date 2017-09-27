@@ -17,30 +17,33 @@
  *     Edson Araújo Soares
  */
 
-#ifndef GOF_STATE_STATE_EMPTYSTATE_H
-#define GOF_STATE_STATE_EMPTYSTATE_H
+#ifndef GOF_STATE_STATE_EMPTY_STATE_H
+#define GOF_STATE_STATE_EMPTY_STATE_H
 
 #include <iostream>
-#include "State/IState.h"
-#include "State/StateMachine.h"
+#include "State/StateContext.h"
+#include "State/AbstractState.h"
 
 namespace GoF {
 
     namespace State {
 
-        class StateMachine;
-        class EmptyState : public IState
+        class EmptyState : public AbstractState
         {
         public:
-            EmptyState(StateMachine &);
+            static IState & getInstance();
 
             double getResult();
-            void setOperandLeft(double);
-            void setOperandRight(double);
-            void setOperation(Operation);
+            void setOperand(double);
 
         private:
-            StateMachine & stateMachine;
+            EmptyState();
+
+            EmptyState(EmptyState const &)
+            { }
+
+            EmptyState & operator=(EmptyState const &)
+            { }
 
         };
 

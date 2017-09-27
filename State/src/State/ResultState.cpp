@@ -4,31 +4,21 @@ namespace GoF {
 
     namespace State {
 
-        ResultState::ResultState(StateMachine & _stateMachine)
-            : stateMachine(_stateMachine),
-              calculationHandler { }
+        ResultState::ResultState()
         {
-            std::cout << "\n -> ResultState" << std::endl;
+            std::cout << "\nResultState" << std::endl;
         }
 
-        double ResultState::getResult()
+        IState & ResultState::getInstance()
         {
-            return calculationHandler.compute(operandRightValue, operation, operandLeftValue);
+            static ResultState instance;
+            return instance;
         }
 
-        void ResultState::setOperandRight(double operand)
+        void ResultState::setOperand(double operand)
         {
-            operandRightValue = operand;
-        }
-
-        void ResultState::setOperandLeft(double operand)
-        {
-            operandLeftValue = operand;
-        }
-
-        void ResultState::setOperation(Operation option)
-        {
-            operation = option;
+            setRightOperand(operand);
+            changeState(&OperandRightState::getInstance());
         }
 
     }

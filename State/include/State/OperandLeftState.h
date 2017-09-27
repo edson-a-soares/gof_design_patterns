@@ -20,28 +20,28 @@
 #ifndef GOF_STATE_STATE_OPERAND_LEFT_STATE_H
 #define GOF_STATE_STATE_OPERAND_LEFT_STATE_H
 
-#include "State/IState.h"
-#include "State/StateMachine.h"
+#include "State/StateContext.h"
+#include "State/AbstractState.h"
 
 namespace GoF {
 
     namespace State {
 
-        class OperandLeftState : public IState
+        class OperandLeftState : public AbstractState
         {
         public:
-            OperandLeftState(StateMachine &);
+            static IState & getInstance();
 
-            double getResult();
-            void setOperandLeft(double);
-            void setOperandRight(double);
             void setOperation(Operation);
 
         private:
-            Operation operation;
-            double operandLeftValue;
-            double operandRightValue;
-            StateMachine & stateMachine;
+            OperandLeftState();
+
+            OperandLeftState(OperandLeftState const &)
+            { }
+
+            OperandLeftState & operator=(OperandLeftState const &)
+            { }
 
         };
 

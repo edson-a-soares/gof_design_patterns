@@ -3,48 +3,42 @@
 
 using GoF::State::Engine;
 using GoF::State::Operation;
-using GoF::State::StateMachine;
+using GoF::State::StateContext;
 
 int main(int argc, char * argv[]) {
 
-    double result = 0;
-    StateMachine stateMachine;
-    Engine engine(stateMachine);
+    StateContext stateContext;
+    Engine engine(stateContext);
 
-    engine.setOperandRight(75);
+    engine.setOperand(75);
     engine.setOperation(Operation::SUM);
-    engine.setOperandLeft(25);
+    engine.setOperand(25);
 
     std::cout << "\n( 75 + 25 ) = " << engine.getResult() << std::endl;
 
-    std::cout << "\nReusing previous results for calculation ...\n" << std::endl;
+    std::cout << "\nReusing previous results for next calculations ...\n" << std::endl;
 
-    result = engine.getResult();
-
-    engine.setOperandRight(result);
+    // Note.: The last result is automatically set as the left operand of
+    // the next operation. Only the operation, and left operand should be inserted.
     engine.setOperation(Operation::SUBTRACT);
-    engine.setOperandLeft(50);
+    engine.setOperand(50);
 
-    std::cout << "( " << result << " - 50 ) = " << engine.getResult() << std::endl;
+    std::cout << "( 100 - 50 ) = " << engine.getResult() << std::endl;
 
-    result = engine.getResult();
-
-    engine.setOperandRight(result);
     engine.setOperation(Operation::MULTIPLY);
-    engine.setOperandLeft(10);
+    engine.setOperand(10);
 
-    std::cout << "( " << result << "  * 10 ) = " << engine.getResult() << std::endl;
+    std::cout << "( 50  * 10 ) = " << engine.getResult() << std::endl;
 
-    result = engine.getResult();
-
-    engine.setOperandRight(result);
     engine.setOperation(Operation::DIVIDE);
-    engine.setOperandLeft(25);
+    engine.setOperand(25);
 
-    std::cout << "( " << result << " / 25 ) = " << engine.getResult() << std::endl;
+    std::cout << "( 500 / 25 ) = " << engine.getResult() << std::endl;
 
+    std::cout << "\nClearing all data .. " << std::endl;
     engine.clear();
-    std::cout << "\nEquals: " << engine.getResult() << std::endl;
+
+    std::cout << "Equals: " << engine.getResult() << std::endl;
 
     return 0;
 

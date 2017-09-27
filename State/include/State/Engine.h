@@ -20,27 +20,26 @@
 #ifndef GOF_STATE_ENGINE_H
 #define GOF_STATE_ENGINE_H
 
-#include "StateMachine.h"
+#include "StateContext.h"
 #include "State/Operation.h"
 
 namespace GoF {
 
     namespace State {
 
-        class StateMachine;
+        class StateContext;
         class Engine
         {
         public:
-            Engine(StateMachine &);
+            Engine(StateContext &);
 
             void clear();
             double getResult();
-            void setOperandLeft(double);
-            void setOperandRight(double);
+            void setOperand(double);
             void setOperation(Operation);
 
         private:
-            StateMachine & stateMachine;
+            StateContext & stateContext;
 
         };
 

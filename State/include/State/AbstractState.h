@@ -17,33 +17,39 @@
  *     Edson Araújo Soares
  */
 
-#ifndef GOF_STATE_STATE_MACHINE_H
-#define GOF_STATE_STATE_MACHINE_H
+#ifndef GOF_STATE_ABSTRACT_STATE_H
+#define GOF_STATE_ABSTRACT_STATE_H
 
-#include <string>
-#include "State/State.h"
 #include "State/IState.h"
-#include "State/EmptyState.h"
-#include "State/ResultState.h"
-#include "State/OperationState.h"
-#include "State/OperandLeftState.h"
-#include "State/OperandRightState.h"
+#include "State/CalculationHandler.h"
 
 namespace GoF {
 
     namespace State {
 
-        class StateMachine
+        enum Operation;
+        class StateContext;
+        class AbstractState : public IState
         {
         public:
-            StateMachine();
-            ~StateMachine();
+            AbstractState();
+            virtual ~AbstractState()
+            { }
 
-            void updateState(State);
-            IState * getCurrentState();
+            virtual double getResult();
+            virtual void setOperand(double);
+            virtual void setOperation(Operation);
+
+            void setContext(StateContext *);
+
+        protected:
+            void changeState(IState *);
+            void setLeftOperand(double);
+            void setRightOperand(double);
 
         private:
-            IState * currentState;
+            StateContext * stateContext;
+            CalculationHandler calculationHandler;
 
         };
 

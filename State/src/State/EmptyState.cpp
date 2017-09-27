@@ -4,28 +4,29 @@ namespace GoF {
 
     namespace State {
 
-        EmptyState::EmptyState(StateMachine & machine)
-            : stateMachine(machine)
+        EmptyState::EmptyState()
         {
             std::cout << "\nEmptyState" << std::endl;
         }
 
+        IState & EmptyState::getInstance()
+        {
+            static EmptyState instance;
+            return instance;
+        }
+
         double EmptyState::getResult()
         {
-            return 0;
+            setLeftOperand(0);
+            setRightOperand(0);
+            return AbstractState::getResult();
         }
 
-        void EmptyState::setOperandRight(double operand)
+        void EmptyState::setOperand(double operand)
         {
-            stateMachine.updateState(State::OPERAND_RIGHT);
-            stateMachine.getCurrentState()->setOperandRight(operand);
+            setLeftOperand(operand);
+            changeState(&OperandLeftState::getInstance());
         }
-
-        void EmptyState::setOperandLeft(double)
-        { }
-
-        void EmptyState::setOperation(Operation)
-        { }
 
     }
 

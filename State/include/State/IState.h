@@ -27,6 +27,7 @@ namespace GoF {
     namespace State {
 
         enum Operation;
+        class StateContext;
         class IState
         {
         public:
@@ -34,9 +35,9 @@ namespace GoF {
             { }
 
             virtual double getResult() = 0;
-            virtual void setOperandLeft(double) = 0;
-            virtual void setOperandRight(double) = 0;
+            virtual void setOperand(double) = 0;
             virtual void setOperation(Operation) = 0;
+            virtual void setContext(StateContext *) = 0;
 
         };
 

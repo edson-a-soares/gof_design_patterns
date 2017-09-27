@@ -21,31 +21,30 @@
 #define GOF_STATE_RESULT_STATE_H
 
 #include <iostream>
-#include "State/IState.h"
-#include "State/StateMachine.h"
+#include "State/StateContext.h"
+#include "State/AbstractState.h"
 #include "State/CalculationHandler.h"
 
 namespace GoF {
 
     namespace State {
 
-        class StateMachine;
-        class ResultState : public IState
+        class StateContext;
+        class ResultState : public AbstractState
         {
         public:
-            ResultState(StateMachine &);
+            static IState & getInstance();
 
-            double getResult();
-            void setOperandLeft(double);
-            void setOperandRight(double);
-            void setOperation(Operation);
+            void setOperand(double);
 
         private:
-            Operation operation;
-            double operandLeftValue;
-            double operandRightValue;
-            StateMachine & stateMachine;
-            CalculationHandler calculationHandler;
+            ResultState();
+
+            ResultState(ResultState const &)
+            { }
+
+            ResultState & operator=(ResultState const &)
+            { }
 
         };
 

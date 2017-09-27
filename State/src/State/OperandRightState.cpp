@@ -4,30 +4,30 @@ namespace GoF {
 
     namespace State {
 
-        OperandRightState::OperandRightState(StateMachine & _stateMachine)
-            : stateMachine(_stateMachine)
+        OperandRightState::OperandRightState()
         {
-            std::cout << "\n -> OperandRightState" << std::endl;
+            std::cout << "\nOperandRightState" << std::endl;
+        }
+
+        IState & OperandRightState::getInstance()
+        {
+            static OperandRightState instance;
+            return instance;
         }
 
         double OperandRightState::getResult()
         {
-            return operandValue;
-        }
+            changeState(&ResultState::getInstance());
+            double result = AbstractState::getResult();
+            AbstractState::setOperation(nextOperation);
 
-        void OperandRightState::setOperandRight(double operand)
-        {
-            operandValue = operand;
+            setLeftOperand(result);
+            return result;
         }
-
-        void OperandRightState::setOperandLeft(double)
-        { }
 
         void OperandRightState::setOperation(Operation operation)
         {
-            stateMachine.updateState(State::OPERATION);
-            stateMachine.getCurrentState()->setOperation(operation);
-            stateMachine.getCurrentState()->setOperandRight(operandValue);
+            nextOperation = operation;
         }
 
     }
