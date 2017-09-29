@@ -12,6 +12,7 @@ endif ()
 
 add_subdirectory(Proxy)
 add_subdirectory(State)
+add_subdirectory(Facade)
 add_subdirectory(Bridge)
 add_subdirectory(Memento)
 add_subdirectory(Builder)
