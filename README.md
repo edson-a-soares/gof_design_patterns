@@ -1,5 +1,5 @@
 ## Introduction
-Samples for the 23 [GoF design patterns](Wikipedia) implemented in modern C++.
+Samples of the 23 [GoF design patterns](https://en.wikipedia.org/wiki/Design_Patterns) implemented in modern C++.
 
 
 #### Creational Patterns ####
