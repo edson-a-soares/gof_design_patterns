@@ -17,28 +17,25 @@
  *     Edson Araújo Soares
  */
 
-#ifndef GOF_ABSTRACT_FACTORY_ANDROID_FACTORY_H
-#define GOF_ABSTRACT_FACTORY_ANDROID_FACTORY_H
+#ifndef GoF_Visitor_EmployeeInterface_INCLUDED
+#define GoF_Visitor_EmployeeInterface_INCLUDED
 
-#include "AbstractFactory/UIFactory.h"
+#include <string>
 
 namespace GoF {
+namespace Visitor {
 
-    namespace AbstractFactory {
 
-        class AndroidFactory : public UIFactory
-        {
-        public:
-            AndroidFactory();
+    class EmployeeInterface {
+    public:
+        virtual ~EmployeeInterface() = default;
+        virtual void earnings(double) = 0;
+        virtual double earnings() const = 0;
+        virtual std::string toString() const = 0;
 
-            IPanel * createPanel();
-            ILabel * createLabel();
-            IButton * createButton();
+    };
 
-        };
 
-    }
-
-}
+} }
 
 #endif

@@ -3,8 +3,10 @@ SET(MODULE_DIRECTORY "Visitor")
 
 set(CMAKE_C_COMPILER /usr/bin/gcc)
 set(CMAKE_CXX_COMPILER /usr/bin/g++)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14")
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+# It removes the prefix "lib" from the .so application's files
+set(CMAKE_SHARED_LIBRARY_PREFIX "")
 
 # It defines the custom directory structure.
 set(PROJECT_SOURCE_DIR ${CMAKE_HOME_DIRECTORY}/${MODULE_DIRECTORY}/src)
@@ -14,9 +16,7 @@ set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_HOME_DIRECTORY}/${MODULE_DIRECTORY}/l
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_HOME_DIRECTORY}/${MODULE_DIRECTORY}/bin)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_HOME_DIRECTORY}/${MODULE_DIRECTORY}/bin)
 
-file(GLOB VISITOR_SOURCE_FILES_TOP "${PROJECT_SOURCE_DIR}/${MODULE_DIRECTORY}/*.cpp")
-file(GLOB_RECURSE VISITOR_SOURCE_FILES_NESTED ${PROJECT_SOURCE_DIR}/${MODULE_DIRECTORY}/*.cpp)
-set(VISITOR_SOURCE_FILES ${VISITOR_SOURCE_FILES_TOP} ${VISITOR_SOURCE_FILES_NESTED})
+file(GLOB_RECURSE VISITOR_SOURCE_FILES ${PROJECT_SOURCE_DIR}/${MODULE_DIRECTORY}/*.cpp)
 
 include_directories("${PROJECT_INCLUDE_DIR}")
 include_directories("${PROJECT_SOURCE_DIR}")
@@ -29,5 +29,5 @@ target_link_libraries(VisitorPattern ${MODULE_NAME})
 
 # handling module tests
 if (ENABLE_TESTS)
-    add_subdirectory(test)
+    add_subdirectory(tests)
 endif ()

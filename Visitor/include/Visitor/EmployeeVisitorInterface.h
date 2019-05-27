@@ -17,28 +17,23 @@
  *     Edson Araújo Soares
  */
 
-#ifndef GOF_VISITOR_AMOUNT_HOURS_AND_PAY_REPORT_H
-#define GOF_VISITOR_AMOUNT_HOURS_AND_PAY_REPORT_H
-
-#include "Visitor/HourlyEmployee.h"
-#include "Visitor/IEmployeeVisitor.h"
-#include "Visitor/SalariedEmployee.h"
-#include "Visitor/CommissionEmployee.h"
+#ifndef GoF_Visitor_EmployeeVisitorInterface_INCLUDED
+#define GoF_Visitor_EmployeeVisitorInterface_INCLUDED
 
 namespace GoF {
+namespace Visitor {
 
-    namespace Visitor {
 
-        class AmountHoursAndPayReport : public IEmployeeVisitor {
-        public:
-            void visit(HourlyEmployee *);
-            void visit(SalariedEmployee *);
-            void visit(CommissionEmployee *);
+    class HourlyEmployee;
+    class CommissionedEmployee;
+    class EmployeeVisitorInterface {
+    public:
+        virtual void visit(HourlyEmployee *) = 0;
+        virtual void visit(CommissionedEmployee *) = 0;
 
-        };
+    };
 
-    }
 
-}
+} }
 
 #endif

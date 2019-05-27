@@ -17,43 +17,47 @@
  *     Edson Araújo Soares
  */
 
-#ifndef GOF_VISITOR_HOURLY_EMPLOYEE_H
-#define GOF_VISITOR_HOURLY_EMPLOYEE_H
+#ifndef GoF_Visitor_HourlyEmployee_INCLUDED
+#define GoF_Visitor_HourlyEmployee_INCLUDED
 
 #include <string>
-#include "Visitor/IEmployeeVisitor.h"
+#include <iostream>
 #include "Visitor/AbstractEmployee.h"
+#include "Visitor/EmployeeVisitableInterface.h"
 
 namespace GoF {
+namespace Visitor {
 
-    namespace Visitor {
 
-        class HourlyEmployee : public AbstractEmployee {
-        public:
-            HourlyEmployee(
-                const std::string &,
-                const std::string &,
-                double = 0.0,
-                double = 0.0
-            );
+    class HourlyEmployee :
+        public AbstractEmployee,
+        public EmployeeVisitableInterface
+    {
+    public:
+        HourlyEmployee(
+            const std::string & name,
+            const std::string & ssn,
+            double hourlyRate,
+            double hoursWorked
+        );
 
-            void setWage(double);
-            double getWage() const;
+        double hourlyRate() const;
+        double workedHours() const;
 
-            void setHours(double);
-            double getHours() const;
+        std::string toString() const override;
+        void accept(std::shared_ptr<EmployeeVisitorInterface>) override;
+        friend std::ostream & operator<<(std::ostream & os, const HourlyEmployee & employee);
 
-            void print() const;
-            void accept(IEmployeeVisitor *);
+    private:
+        double _hourlyRate;
+        double _workedHours;
 
-        private:
-            double wage;
-            double hours;
+        // An employee can work a maximum 48 hours per week.
+        const double LEGAL_OVERTIME_PERCENTAGE_LIMIT = 1.2;
 
-        };
+    };
 
-    }
 
-}
+} }
 
 #endif

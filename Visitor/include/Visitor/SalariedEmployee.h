@@ -17,39 +17,31 @@
  *     Edson Araújo Soares
  */
 
-#ifndef GOF_VISITOR_SALARIED_EMPLOYEE_H
-#define GOF_VISITOR_SALARIED_EMPLOYEE_H
+#ifndef GoF_Visitor_SalariedEmployee_INCLUDED
+#define GoF_Visitor_SalariedEmployee_INCLUDED
 
 #include <string>
-#include "Visitor/IEmployeeVisitor.h"
+#include <iostream>
 #include "Visitor/AbstractEmployee.h"
 
 namespace GoF {
+namespace Visitor {
 
-    namespace Visitor {
 
-        class EmployeeVisitor;
-        class SalariedEmployee : public AbstractEmployee {
-        public:
-            SalariedEmployee(
-                const std::string &,
-                const std::string &,
-                double = 0.0
-            );
+    class SalariedEmployee : public AbstractEmployee
+    {
+    public:
+        SalariedEmployee(const std::string & name, const std::string & ssn, double salary);
+        double weeklySalary() const;
+        std::string toString() const override;
+        friend std::ostream & operator<<(std::ostream & os, const SalariedEmployee & employee);
 
-            void setWeeklySalary(double);
-            double getWeeklySalary() const;
+    private:
+        double _weeklySalary;
 
-            void print() const;
-            void accept(IEmployeeVisitor *);
+    };
 
-        private:
-            double weeklySalary;
 
-        };
-
-    }
-
-}
+} }
 
 #endif

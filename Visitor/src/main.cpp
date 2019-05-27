@@ -1,46 +1,34 @@
+#include <memory>
 #include <iostream>
-
-#include "Visitor/IEmployee.h"
 #include "Visitor/HourlyEmployee.h"
 #include "Visitor/SalariedEmployee.h"
-#include "Visitor/CommissionEmployee.h"
-#include "Visitor/AmountHoursAndPayReport.h"
+#include "Visitor/EmployeeInterface.h"
+#include "Visitor/CommissionedEmployee.h"
+#include "Visitor/NumberOfHoursAndPayReport.h"
 
-using GoF::Visitor::IEmployee;
-using GoF::Visitor::HourlyEmployee;
-using GoF::Visitor::IEmployeeVisitor;
-using GoF::Visitor::SalariedEmployee;
-using GoF::Visitor::CommissionEmployee;
-using GoF::Visitor::AmountHoursAndPayReport;
+using namespace GoF::Visitor;
 
 int main(int argc, char * argv[]) {
 
     // Employee types
-    IEmployee * salariedEmployee   = new SalariedEmployee("John Smith", "111-11-1111", 800);
-    IEmployee * hourlyEmployee     = new HourlyEmployee("Karen Price", "222-22-2222", 16.75, 40);
-    IEmployee * commissionEmployee = new CommissionEmployee("Sue Jones", "333-33-3333", 10000, .06 );
+    auto salariedEmployee   = std::make_unique<SalariedEmployee>("John Smith", "111-11-1111", 800);
+    auto hourlyEmployee     = std::make_unique<HourlyEmployee>("Karen Price", "222-22-2222", 16.75, 40);
+    auto commissionEmployee = std::make_unique<CommissionedEmployee>("Sue Jones", "333-33-3333", 10000, .06 );
 
     // Payment report
-    IEmployeeVisitor * report = new AmountHoursAndPayReport();
+    std::shared_ptr<EmployeeVisitorInterface> report = std::make_shared<NumberOfHoursAndPayReport>();
 
     hourlyEmployee->accept(report);
-    salariedEmployee->accept(report);
     commissionEmployee->accept(report);
 
-    hourlyEmployee->print();
-    std::cout << "\nEarned $" << hourlyEmployee->getEarnings() << "\n";
+    std::cout << *hourlyEmployee;
+    std::cout << "\nEarned $" << hourlyEmployee->earnings() << "\n";
 
-    salariedEmployee->print();
-    std::cout << "\nEarned $" << salariedEmployee->getEarnings() << "\n";
+    std::cout << *salariedEmployee;
+    std::cout << "\nEarned $" << salariedEmployee->earnings() << "\n";
 
-    commissionEmployee->print();
-    std::cout << "\nEarned $" << commissionEmployee->getEarnings() << "\n";
-
-
-    delete report;
-    delete hourlyEmployee;
-    delete salariedEmployee;
-    delete commissionEmployee;
+    std::cout << *commissionEmployee;
+    std::cout << "\nEarned $" << commissionEmployee->earnings() << "\n";
 
     return 0;
 

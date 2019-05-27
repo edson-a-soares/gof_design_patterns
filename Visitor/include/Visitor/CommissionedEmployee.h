@@ -17,32 +17,32 @@
  *     Edson Araújo Soares
  */
 
-#ifndef GoF_Visitor_AbstractEmployee_INCLUDED
-#define GoF_Visitor_AbstractEmployee_INCLUDED
+#ifndef GoF_Visitor_CommissionedEmployee_INCLUDED
+#define GoF_Visitor_CommissionedEmployee_INCLUDED
 
-#include <string>
-#include "Visitor/EmployeeInterface.h"
+#include <iostream>
+#include "Visitor/AbstractEmployee.h"
+#include "Visitor/EmployeeVisitableInterface.h"
 
 namespace GoF {
 namespace Visitor {
 
 
-    class AbstractEmployee : public EmployeeInterface {
+    class CommissionedEmployee :
+        public AbstractEmployee,
+        public EmployeeVisitableInterface
+    {
     public:
-        ~AbstractEmployee() override = default;
-        std::string name() const;
-        void earnings(double) override;
-        double earnings() const override;
+        CommissionedEmployee(const std::string & name, const std::string & ssn, double sales = 0.0, double rate  = 0.0);
+        double grossSales() const;
+        double commissionRate() const;
         std::string toString() const override;
-        std::string socialSecurityNumber() const;
-
-    protected:
-        AbstractEmployee(const std::string & name, const std::string & ssn);
+        void accept(std::shared_ptr<EmployeeVisitorInterface>) override;
+        friend std::ostream & operator<<(std::ostream & os, const CommissionedEmployee & employee);
 
     private:
-        double _earnings;
-        const std::string _name;
-        const std::string _socialSecurityNumber;
+        double _grossSales;
+        double _commissionRate;
 
     };
 

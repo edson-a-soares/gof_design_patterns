@@ -17,26 +17,24 @@
  *     Edson Araújo Soares
  */
 
-#ifndef GOF_VISITOR_IEMPLOYEE_VISITOR_H
-#define GOF_VISITOR_IEMPLOYEE_VISITOR_H
+#ifndef GoF_Visitor_EmployeeVisitableInterface_INCLUDED
+#define GoF_Visitor_EmployeeVisitableInterface_INCLUDED
+
+#include <memory>
+#include "Visitor/EmployeeVisitorInterface.h"
 
 namespace GoF {
+namespace Visitor {
 
-    namespace Visitor {
 
-        class HourlyEmployee;
-        class SalariedEmployee;
-        class CommissionEmployee;
-        class IEmployeeVisitor {
-        public:
-            virtual void visit(HourlyEmployee *) = 0;
-            virtual void visit(SalariedEmployee *) = 0;
-            virtual void visit(CommissionEmployee *) = 0;
+    class EmployeeVisitableInterface {
+    public:
+        virtual ~EmployeeVisitableInterface() = default;
+        virtual void accept(std::shared_ptr<EmployeeVisitorInterface>) = 0;
 
-        };
+    };
 
-    }
 
-}
+} }
 
 #endif
