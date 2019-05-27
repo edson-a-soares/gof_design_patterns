@@ -17,28 +17,22 @@
  *     Edson Araújo Soares
  */
 
-#ifndef GOF_ABSTRACT_FACTORY_IOS_FACTORY_H
-#define GOF_ABSTRACT_FACTORY_IOS_FACTORY_H
-
-#include "AbstractFactory/UIFactory.h"
+#ifndef GoF_AbstractFactory_LabelInterface_INCLUDED
+#define GoF_AbstractFactory_LabelInterface_INCLUDED
 
 namespace GoF {
+namespace AbstractFactory {
 
-    namespace AbstractFactory {
 
-        class IOSFactory : public UIFactory
-        {
-        public:
-            IOSFactory();
+    class LabelInterface
+    {
+    public:
+        virtual ~LabelInterface() = default;
+        virtual void render() = 0;
 
-            IPanel * createPanel();
-            ILabel * createLabel();
-            IButton * createButton();
+    };
 
-        };
 
-    }
-
-}
+} }
 
 #endif

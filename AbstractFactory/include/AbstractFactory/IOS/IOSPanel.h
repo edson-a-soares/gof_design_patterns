@@ -17,26 +17,24 @@
  *     Edson Araújo Soares
  */
 
-#ifndef GOF_ABSTRACT_FACTORY_IOS_PANEL_H
-#define GOF_ABSTRACT_FACTORY_IOS_PANEL_H
+#ifndef GoF_AbstractFactory_IOSPanel_INCLUDED
+#define GoF_AbstractFactory_IOSPanel_INCLUDED
 
-#include "AbstractFactory/IPanel.h"
+#include "AbstractFactory/PanelInterface.h"
 
 namespace GoF {
+namespace AbstractFactory {
 
-    namespace AbstractFactory {
 
-        class IOSPanel : public IPanel
-        {
-        public:
-            IOSPanel();
+    class IOSPanel : public PanelInterface
+    {
+    public:
+        IOSPanel() = default;
+        void render() override;
 
-            void render();
+    };
 
-        };
 
-    }
-
-}
+} }
 
 #endif

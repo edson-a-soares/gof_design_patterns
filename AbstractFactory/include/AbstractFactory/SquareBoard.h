@@ -17,26 +17,34 @@
  *     Edson Araújo Soares
  */
 
-#ifndef GOF_ABSTRACT_FACTORY_ANDROID_LABEL_H
-#define GOF_ABSTRACT_FACTORY_ANDROID_LABEL_H
+#ifndef GoF_AbstractFactory_SquareBoard_INCLUDED
+#define GoF_AbstractFactory_SquareBoard_INCLUDED
 
-#include "AbstractFactory/ILabel.h"
+#include <memory>
+#include "AbstractFactory/UIFactoryInterface.h"
+#include "AbstractFactory/PanelInterface.h"
+#include "AbstractFactory/LabelInterface.h"
+#include "AbstractFactory/ButtonInterface.h"
 
 namespace GoF {
+namespace AbstractFactory {
 
-    namespace AbstractFactory {
 
-        class AndroidLabel : public ILabel
-        {
-        public:
-            AndroidLabel();
+    class SquareBoard
+    {
+    public:
+        explicit SquareBoard(std::shared_ptr<UIFactoryInterface> &);
+        void draw();
 
-            void render();
+    private:
+        std::shared_ptr<PanelInterface> panel;
+        std::shared_ptr<LabelInterface> label;
+        std::shared_ptr<ButtonInterface> button;
+        std::shared_ptr<UIFactoryInterface> _factory;
 
-        };
+    };
 
-    }
 
-}
+} }
 
 #endif

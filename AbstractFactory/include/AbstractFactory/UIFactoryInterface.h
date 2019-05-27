@@ -17,26 +17,30 @@
  *     Edson Araújo Soares
  */
 
-#ifndef GOF_ABSTRACT_FACTORY_IOS_BUTTON_H
-#define GOF_ABSTRACT_FACTORY_IOS_BUTTON_H
+#ifndef GoF_AbstractFactory_UIFactoryInterface_INCLUDED
+#define GoF_AbstractFactory_UIFactoryInterface_INCLUDED
 
-#include "AbstractFactory/IButton.h"
+#include <memory>
+
+#include "AbstractFactory/PanelInterface.h"
+#include "AbstractFactory/LabelInterface.h"
+#include "AbstractFactory/ButtonInterface.h"
 
 namespace GoF {
+namespace AbstractFactory {
 
-    namespace AbstractFactory {
 
-        class IOSButton : public IButton
-        {
-        public:
-            IOSButton();
+    class UIFactoryInterface
+    {
+    public:
+        virtual ~UIFactoryInterface() = default;
+        virtual std::unique_ptr<PanelInterface>  createPanel()  = 0;
+        virtual std::unique_ptr<LabelInterface>  createLabel()  = 0;
+        virtual std::unique_ptr<ButtonInterface> createButton() = 0;
 
-            void render();
+    };
 
-        };
 
-    }
-
-}
+} }
 
 #endif

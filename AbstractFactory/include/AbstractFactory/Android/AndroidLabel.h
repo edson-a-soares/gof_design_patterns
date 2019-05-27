@@ -17,25 +17,24 @@
  *     Edson Araújo Soares
  */
 
-#ifndef GOF_ABSTRACT_FACTORY_ILABEL_H
-#define GOF_ABSTRACT_FACTORY_ILABEL_H
+#ifndef GoF_AbstractFactory_AndroidLabel_INCLUDED
+#define GoF_AbstractFactory_AndroidLabel_INCLUDED
+
+#include "AbstractFactory/LabelInterface.h"
 
 namespace GoF {
+namespace AbstractFactory {
 
-    namespace AbstractFactory {
 
-        class ILabel
-        {
-        public:
-            virtual ~ILabel()
-            { }
+    class AndroidLabel : public LabelInterface
+    {
+    public:
+        AndroidLabel() = default;
+        void render() override;
 
-            virtual void render() = 0;
+    };
 
-        };
 
-    }
-
-}
+} }
 
 #endif

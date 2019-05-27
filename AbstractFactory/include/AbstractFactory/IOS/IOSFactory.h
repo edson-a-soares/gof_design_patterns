@@ -17,25 +17,27 @@
  *     Edson Araújo Soares
  */
 
-#ifndef GOF_ABSTRACT_FACTORY_IPANEL_H
-#define GOF_ABSTRACT_FACTORY_IPANEL_H
+#ifndef GoF_AbstractFactory_IOSFactory_INCLUDED
+#define GoF_AbstractFactory_IOSFactory_INCLUDED
+
+#include <memory>
+#include "AbstractFactory/UIFactoryInterface.h"
 
 namespace GoF {
+namespace AbstractFactory {
 
-    namespace AbstractFactory {
 
-        class IPanel
-        {
-        public:
-            virtual ~IPanel()
-            { }
+    class IOSFactory : public UIFactoryInterface
+    {
+    public:
+        IOSFactory() = default;
+        std::unique_ptr<PanelInterface>  createPanel()  override;
+        std::unique_ptr<LabelInterface>  createLabel()  override;
+        std::unique_ptr<ButtonInterface> createButton() override;
 
-            virtual void render() = 0;
+    };
 
-        };
 
-    }
-
-}
+} }
 
 #endif

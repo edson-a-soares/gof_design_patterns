@@ -17,26 +17,22 @@
  *     Edson Araújo Soares
  */
 
-#ifndef GOF_ABSTRACT_FACTORY_ANDROID_BUTTON_H
-#define GOF_ABSTRACT_FACTORY_ANDROID_BUTTON_H
-
-#include "AbstractFactory/IButton.h"
+#ifndef GoF_AbstractFactory_PanelInterface_INCLUDED
+#define GoF_AbstractFactory_PanelInterface_INCLUDED
 
 namespace GoF {
+namespace AbstractFactory {
 
-    namespace AbstractFactory {
 
-        class AndroidButton : public IButton
-        {
-        public:
-            AndroidButton();
+    class PanelInterface
+    {
+    public:
+        virtual ~PanelInterface() = default;
+        virtual void render() = 0;
 
-            void render();
+    };
 
-        };
 
-    }
-
-}
+} }
 
 #endif

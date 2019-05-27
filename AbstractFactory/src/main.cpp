@@ -1,55 +1,41 @@
+#include <memory>
 #include <iostream>
-#include "AbstractFactory/UIFactory.h"
-#include "AbstractFactory/IOSFactory.h"
-#include "AbstractFactory/AndroidFactory.h"
+#include "AbstractFactory/SquareBoard.h"
+#include "AbstractFactory/IOS/IOSFactory.h"
+#include "AbstractFactory/UIFactoryInterface.h"
+#include "AbstractFactory/Android/AndroidFactory.h"
 
-using GoF::AbstractFactory::IPanel;
-using GoF::AbstractFactory::ILabel;
-using GoF::AbstractFactory::IButton;
-using GoF::AbstractFactory::UIFactory;
-using GoF::AbstractFactory::IOSFactory;
-using GoF::AbstractFactory::AndroidFactory;
+using namespace GoF::AbstractFactory;
 
 int main(int argc, char * argv[]) {
 
     std::cout << "\nEnter with your SquareBoard Interface preferences: " << std::endl;
-    std::cout << " - iOS " << std::endl;
+    std::cout << " - iOS "      << std::endl;
     std::cout << " - Android\n" << std::endl;
 
-    std::string uiPreferences;
-    UIFactory * userInterfaceFactory = nullptr;
+    std::string UIPreferences;
+    std::shared_ptr<UIFactoryInterface> componentsFactory = nullptr;
 
-    std::cin >> uiPreferences;
+    std::cin >> UIPreferences;
 
-    if ( uiPreferences != "iOS" && uiPreferences != "Android" ) {
-        std::cout << "Error: " << uiPreferences << " is not a valid UI option." << std::endl;
+    if ( UIPreferences != "iOS" && UIPreferences != "Android" ) {
+        std::cout << "Error: " << UIPreferences << " is not a valid UI option." << std::endl;
         exit(1);
     }
 
-    if ( uiPreferences == "iOS" ) {
-        userInterfaceFactory = new IOSFactory();
+    if ( UIPreferences == "iOS" ) {
+        componentsFactory = std::make_unique<IOSFactory>();
         std::cout << "\nYou chose an iOS SquareBoard Interface:" << std::endl;
     }
 
-    if ( uiPreferences == "Android" ) {
-        userInterfaceFactory = new AndroidFactory();
+    if ( UIPreferences == "Android" ) {
+        componentsFactory = std::make_unique<AndroidFactory>();
         std::cout << "\nYou chose an Android SquareBoard Interface:" << std::endl;
     }
 
-    IPanel * panel = userInterfaceFactory->createPanel();
-    panel->render();
 
-    ILabel * label = userInterfaceFactory->createLabel();
-    label->render();
-
-    IButton * button = userInterfaceFactory->createButton();
-    button->render();
-
-
-    delete panel;
-    delete label;
-    delete button;
-    delete userInterfaceFactory;
+    SquareBoard board = SquareBoard(componentsFactory);
+    board.draw();
 
     return 0;
 

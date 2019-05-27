@@ -17,26 +17,24 @@
  *     Edson Araújo Soares
  */
 
-#ifndef GOF_ABSTRACT_FACTORY_ANDROID_PANEL_H
-#define GOF_ABSTRACT_FACTORY_ANDROID_PANEL_H
+#ifndef GoF_AbstractFactory_AndroidPanel_INCLUDED
+#define GoF_AbstractFactory_AndroidPanel_INCLUDED
 
-#include "AbstractFactory/IPanel.h"
+#include "AbstractFactory/PanelInterface.h"
 
 namespace GoF {
+namespace AbstractFactory {
 
-    namespace AbstractFactory {
 
-        class AndroidPanel : public IPanel
-        {
-        public:
-            AndroidPanel();
+    class AndroidPanel : public PanelInterface
+    {
+    public:
+        AndroidPanel() = default;
+        void render() override;
 
-            void render();
+    };
 
-        };
 
-    }
-
-}
+} }
 
 #endif

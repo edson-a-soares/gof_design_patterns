@@ -17,25 +17,24 @@
  *     Edson Araújo Soares
  */
 
-#ifndef GOF_ABSTRACT_FACTORY_IBUTTON_H
-#define GOF_ABSTRACT_FACTORY_IBUTTON_H
+#ifndef GoF_AbstractFactory_IOSButton_INCLUDED
+#define GoF_AbstractFactory_IOSButton_INCLUDED
+
+#include "AbstractFactory/ButtonInterface.h"
 
 namespace GoF {
+namespace AbstractFactory {
 
-    namespace AbstractFactory {
 
-        class IButton
-        {
-        public:
-            virtual ~IButton()
-            { }
+    class IOSButton : public ButtonInterface
+    {
+    public:
+        IOSButton() = default;
+        void render() override;
 
-            virtual void render() = 0;
+    };
 
-        };
 
-    }
-
-}
+} }
 
 #endif
